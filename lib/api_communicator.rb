@@ -19,8 +19,10 @@ def get_character_movies_from_api(character_name)
 end
 
 def print_movies(films)
+  num = 1
   films.each do |film|
-    puts film["title"]
+    puts num.to_s + ". " + film["title"]
+    num += 1
   end 
 end
 
@@ -43,12 +45,13 @@ def make_request(url)
 end 
 
 def find_character(url)
-  #makes
+  #makes a request with character url and gets back first matching character in ruby hash
   person_data = make_request(url)
   return person_data["results"][0] # only returns first matching name
 end 
 
 def get_films(character)
+  # makes requests for all films and returns the films in ruby hash
   character["films"].map do |film_url|
     make_request(film_url)
   end
